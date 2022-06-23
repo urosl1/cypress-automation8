@@ -1,0 +1,75 @@
+class LoginPage {
+    // get loginBtn() {
+    //     return cy.get(".nav-link").eq(1);
+    // }
+
+    get emailInput() {
+        return cy.get("[type='email']");
+
+    }
+
+    get myOrgSquare() {
+        return cy.get(".vs-c-my-organization--add-new");
+        // return cy.get(".vs-c-my-organizations-item-wrapper").first().children().last();
+    }
+
+
+    get passwordInput() {
+        return cy.get("[type='password']");
+
+    }
+
+    get submitBtn() {
+        return cy.get(".vs-c-btn.vs-c-btn--primary.vs-c-btn--spaced");
+    }
+
+    get orgName() {
+        return cy.get("[type='text']");
+
+    }
+
+    get nextButton() {
+        return cy.get("[type='button']").eq(3);
+
+        // return cy.get('.el-button.vs-c-button-focus.el-button--success.el-button--large');
+    }
+
+
+    // get nameInput() {
+    //     return cy.get('.el-button.vs-c-button-focus.el-button--success.el-button--large');
+    // }
+    // get myGalleriesBtn() {
+    //     return cy.get(".nav-link").eq(1);
+    // }
+
+    // get logoutBtn() {
+    //     return cy.get(".nav-link").last();
+    // }
+
+    // get errorMessage() {
+    //     return cy.get('p[class="alert alert-danger"]');
+    // }
+
+    // get loginHeading() {
+    //     return cy.get("h1");
+    // }
+
+    // clickLoginBtn() {
+    //     this.loginBtn.click();
+    // }
+
+    login(email, password) {
+        this.emailInput.type(email);
+        this.passwordInput.type(password);
+        this.submitBtn.click();
+    }
+
+    createOrg(name) {
+        this.myOrgSquare.click();
+        this.orgName.type(name);
+        this.nextButton.click();
+        this.nextButton.click();
+    }
+}
+
+export const loginPage = new LoginPage();

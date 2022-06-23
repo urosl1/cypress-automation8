@@ -1,0 +1,57 @@
+class CreateOrganization {
+  get newOrganiaztionBtn() {
+    return cy.get(".vs-c-my-organization--add-new");
+  }
+
+  get nameInput() {
+    return cy.get("[type='text']");
+  }
+
+  get nextBtn() {
+    return cy.get("[type='button']").last();
+  }
+
+  get uploadImageBtn() {
+    return cy.get(".el-upload-dragger");
+  }
+
+  get imageCircle() {
+    return cy.get(".vs-c-btn vs-c-btn--rounded");
+  }
+
+  create(name) {
+    this.newOrganiaztionBtn.click();
+    this.nameInput.type(name);
+    this.nextBtn.click();
+    this.nextBtn.click();
+  }
+
+  // createWithImage(name) {
+  //   this.newOrganiaztionBtn.click();
+  //   this.nameInput.type(name);
+  //   this.nextBtn.click();
+  //   this.imageCircle.click();
+  //   cy.wait(500);
+
+  //   cy.window().then(function(p){
+  //     //stubbing prompt window
+  //     cy.stub(p, "prompt").returns("Tutorialspoint");
+  //     // click on Click for JS Prompt button
+  //     cy.get(':nth-child(3) > button').click()
+  //     // verify application message on clicking on OK
+  //     cy.get('#result').contains('You entered: Tutorialspoint')
+  //  });
+
+  //   this.nextBtn.click();
+  // }
+
+  // createWithImage(name) {
+  //   this.newOrganiaztionBtn.click();
+  //   this.nameInput.type(name);
+  //   this.nextBtn.click();
+  //   this.uploadImageBtn.click();
+  //   this.createBtn.click();
+  // }
+}
+
+export const createOrganization = new CreateOrganization();

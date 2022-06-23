@@ -1,0 +1,44 @@
+class EditOrgPage {
+
+    get name() {
+        return cy.get("[name='name']");
+
+    }
+    get updateBtn() {
+        return cy.get("[type='submit']").eq(0);
+
+    }
+    get imageAvatar() {
+        return cy.get(".vs-c-img--avatar.vs-u-img--round");
+
+    }
+    get checkBoxDay() {
+        // eq 0 1 2 3 za ostale dane
+        return cy.get(".vs-c-checkbox-check");
+
+    }
+    get dropMenu() {
+        //za monday saturday sunday drop
+        return cy.get(".vs-c-btn.vs-c-btn--link");
+
+    }
+    get emailInput() {
+        return cy.get("['name'='name']");
+
+    }
+
+    // calendarStart(day) {
+    //     this.dropMenu.click();
+    //     if (day === 1) saturday; 
+    //     cy.get(".el-dropdown-menu.vs-c-users-stats-dropdown").eq(day);
+    // }
+
+    nameChange(nameInput) {
+        this.name.clear();
+        this.name.type('nameInput');
+        this.updateBtn.click();
+    }
+
+}
+
+export const editOrgPage = new EditOrgPage();

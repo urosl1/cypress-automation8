@@ -1,0 +1,143 @@
+class Edit {
+  get nameInput() {
+    return cy.get("[name='name']");
+  }
+
+  get updateBtn() {
+    return cy.get("[type='submit']").first();
+  }
+  get checkBoxDay() {
+    // eq 0 1 2 3 za ostale dane
+    return cy.get(".vs-c-checkbox-check");
+  }
+  get vacDays() {
+    return cy.get("[name='vacationDays']");
+  }
+  get numOfWorkingMonths() {
+    return cy.get("[name='numOfWorkingMonthsForAdditionalDays']");
+  }
+  get additionalVacationDays() {
+    return cy.get("[name='additionalVacationDays']");
+  }
+  get updateBtn2() {
+    return cy.get("[type='submit']").eq(1);
+  }
+  get deleteButton() {
+    return cy.get(".vs-c-btn--warning");
+  }
+  get password() {
+    return cy.get("[type='password']");
+  }
+  get yesBtn() {
+    return cy.get("[name='save-btn']");
+  }
+  get boardYesBtn() {
+    return cy.get("[name='next_btn']");
+  }
+  // get boardBtn() {
+  //   return cy.get(".vs-c-my-organization__board-new").eq(0);
+  // }
+
+  get addProjectBtn() {
+    return cy.get(".vs-c-btn--primary").first();
+  }
+  get projectBtn() {
+    return cy.get(".vs-c-btn--primary").eq(0);
+  }
+  get addBoardBtn() {
+    return cy.get(".vs-c-organization-boards__item--add-new");
+  }
+  get archiveBtn() {
+    return cy.get(".vs-c-btn--success");
+  }
+
+  get deArchiveBtn() {
+    return cy.get(".vs-c-btn--primary");
+  }
+
+  get calendarStartDay() {
+    return cy.get(".el-dropdown").first();
+  }
+
+  get calendarStartDayDrop() {
+    return cy.get(".el-dropdown-menu__item");
+  }
+
+  get monday() {
+    return cy.get(".vs-c-task-modal-type-dropdown__item-name").eq(1);
+  }
+
+  get boardText() {
+    return cy.get("[name='name']");
+  }
+
+  changeCalendarStartDay() {
+    this.calendarStartDay.click();
+    cy.wait(1000);
+    this.monday.click();
+  }
+
+  markCheckbox(number) {
+    this.checkBoxDay.eq(number).click();
+  }
+
+  editName(newName) {
+    this.nameInput.clear();
+    this.nameInput.type(newName);
+    this.updateBtn.click();
+  }
+  vacationDays(number1, number2, number3) {
+    this.vacDays.clear();
+    this.vacDays.type(number1);
+    this.numOfWorkingMonths.clear();
+    this.numOfWorkingMonths.type(number2);
+    this.additionalVacationDays.clear();
+    this.additionalVacationDays.type(number3);
+    this.updateBtn2.click();
+  }
+  delete() {
+    this.deleteButton.click();
+    cy.wait(1000);
+    this.password.type("9214AZrQc");
+    this.yesBtn.click();
+  }
+
+  archiveDelete() {
+    cy.get("[name='close-new-board-modal-btn']").click();
+    this.deleteButton.click();
+    cy.wait(1000);
+    this.password.type("9214AZrQc");
+    this.yesBtn.click();
+  }
+  addBoard(boardTypeInput, boardName) {
+    cy.get("[name='close-new-board-modal-btn']").click();
+    cy.wait(3000);
+    this.addBoardBtn.click();
+    cy.get("[name='name']").type(boardName);
+    this.boardYesBtn.click();
+    // this.boardText.type("randoTekst");
+    cy.get(".vs-c-radio-check").eq(boardTypeInput).click();
+    this.boardYesBtn.click();
+    this.boardYesBtn.click();
+    this.boardYesBtn.click();
+    this.boardYesBtn.click();
+  }
+  addProject(projectName) {
+    cy.get("[name='close-new-board-modal-btn']").click();
+    this.addProjectBtn.click();
+    this.boardText.type(projectName);
+    this.boardYesBtn.click();
+    this.boardYesBtn.click();
+  }
+  archive() {
+    this.archiveBtn.click();
+    this.yesBtn.click();
+  }
+  reopenOrg() {
+    cy.get("[name='close-new-board-modal-btn']").click();
+    this.deArchiveBtn.click();
+    this.yesBtn.click();
+  }
+}
+
+export const edit = new Edit();
